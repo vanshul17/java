@@ -1,0 +1,23 @@
+package assignment3_000924316;
+/**
+ * Implementation of a measuring Scale with a random weight on the
+ * left side. The user can manipulate the right to try and balance it.
+ * @author vanshul vanshul
+ */
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class Wheel {
+    private double x;
+    private double y;
+
+    public Wheel(double x, double y){
+        this.x=x;
+        this.y=y;
+    }
+    public void draw(GraphicsContext gc){
+        gc.setFill(Color.BLUE);
+        gc.fillOval(x,y,7,60);
+    }
+        }

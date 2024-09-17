@@ -1,0 +1,30 @@
+package assignment3_000924316;
+/**
+ * Implementation of a measuring Scale with a random weight on the
+ * left side. The user can manipulate the right to try and balance it.
+ * @author vanshul vanshul
+ */
+
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class Head {
+  private static double x;
+  private static double y;
+
+    public Head(double x, double y){
+        this.x=x;
+        this.y=y;
+
+    }
+    public static void draw(GraphicsContext gc) {
+        //setting the head color to black
+        gc.setFill(Color.BLACK);
+        // drawing the head rectangle
+        gc.fillRect(x+25, y, 30, 30);
+        //drawing the neck part
+        gc.fillRect(x+7.5+25, y+30, 15,10 );
+    }
+
+}

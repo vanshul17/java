@@ -1,0 +1,36 @@
+package assignment3_000924316;
+/**
+ * Implementation of a measuring Scale with a random weight on the
+ * left side. The user can manipulate the right to try and balance it.
+ * @author vanshul vanshul
+ */
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+public class Teams {
+    private double x, y;
+    private String name;
+    private Players player1,player2,player3;
+
+    public Teams( double x, double y,String name, Color color){
+        this.x=x;
+        this.y=y;
+        this.name=name;
+
+        player1=new Players(x,y,color);
+        player2=new Players(x+100,y,color);
+        player3=new Players(x+200,y,color);
+    }
+    public void draw(GraphicsContext gc) {
+        //drawing the players
+        player1.draw(gc);
+        player2.draw(gc);
+        player3.draw(gc);
+        //calculating average score
+        double avg=(player1.getAverage()+player2.getAverage()+player3.getAverage())/3;
+        //displaying average score and team name
+        gc.fillText(this.name+"(Team Average "+avg+")", x, y+38+65+20);
+    }
+
+}

@@ -1,0 +1,36 @@
+package assignment4_000924316;
+
+/**
+ * This is the class header. Put a brief description of your
+ * program here, and the date it was created. 28 / 02 / 2024
+ *
+ * @author vanshul Vanshul
+ **/
+
+public class Card {
+    private int rank;
+    private int suit;
+
+    public Card(int rank, int suit){
+        this.rank=rank;
+        this.suit=suit;
+
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getSuit() {
+        return suit;
+    }
+
+    public int getValue(){
+        return suit*rank;
+    }
+
+    @Override
+    public String toString() {
+        return "Suit" + getSuit() + "Rank" + getRank();
+    }
+}

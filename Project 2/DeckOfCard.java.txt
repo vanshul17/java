@@ -1,0 +1,126 @@
+package assignment4_000924316;
+
+import java.util.Random;
+/**
+ * This is the class header. Put a brief description of your
+ * program here, and the date it was created. 28 / 02 / 2024
+ *
+ * @author vanshul Vanshul
+ **/
+
+public class DeckOfCard {
+    private Card[] deck;
+    private int maxRank;
+    private int noSuit;
+    private int currentCard = 1;
+
+    int maxValueCard = maxRank*noSuit;
+    Random randNum = new Random();
+
+    Card valueCard = new Card(maxRank,noSuit);
+
+    public int getMaxRank() {
+        return maxRank;
+    }
+
+    public int getNoSuit() {
+        return noSuit;
+    }
+    public DeckOfCard(int maxRank,int noSuit){
+
+        deck = new Card[maxRank*noSuit];
+        int i =0;
+        for(int suit = 1; suit<=noSuit; suit++){
+            for (int rank= 1; rank<=maxRank; rank++){
+                deck[i++] = new Card(rank,suit);
+            }
+        }
+
+    }
+
+    public Card[] getDeck() {
+        return deck;
+    }
+
+    public void shuffle(){
+        currentCard =0;
+        Card temp = new Card(1,1);
+
+        for(int i=0; i< deck.length; i++){
+            int swap = randNum.nextInt(deck.length);
+            temp = deck[i];
+            deck[i] = deck[swap];
+            deck[swap]= temp;
+        }
+    }
+
+    public int getSize(){
+        return deck.length;
+    }
+
+    public int getMinimum(){
+        return 1;
+    }
+
+    public int getMaximum(){
+        int max_val = deck[0].getValue();
+        for (Card c:deck){
+            if(c.getValue()>max_val){
+                max_val = c.getValue();
+            }
+        }
+        return max_val;
+    }
+    public Card dealOneCard(){
+        if(currentCard< deck.length){
+            return deck[currentCard++];
+        }
+        else{
+            return null;
+        }
+    }
+    public Card[] dealMoreThanOneCard(int n){
+        int j;
+        Card[] dealtCard = new Card[n];
+        for(j=0 ; j<n; j++){
+            dealtCard[j] = deck[j];
+        }
+        for(int i=0;i<n; i++){
+            System.out.println(dealtCard[i]);
+        }
+        return dealtCard;
+    }
+
+    public int[] generateCardHistogram(int numberOfCards) {
+        int[] cardHistogram = new int[maxRank * noSuit * noSuit];
+        for (int shuffleCount = 1; shuffleCount < 100000; shuffleCount++) {
+            shuffle();
+        }
+
+        int sumOfRankAndSuit = 0;
+
+        // Calculate the sum of ranks multiplied by suits for each card
+        for (int cardIndex = 0; cardIndex < numberOfCards; cardIndex++) {
+            sumOfRankAndSuit += (deck[cardIndex].getRank() * deck[cardIndex].getSuit());
+        }
+
+        // Increment the corresponding bin in the histogram
+        cardHistogram[sumOfRankAndSuit] += 1;
+
+        // Display the histogram values
+        for (int binValue : cardHistogram) {
+            System.out.println(binValue);
+        }
+
+        return cardHistogram;
+    }
+    public String toString ()
+    {
+        System.out.println("Shuffle = 1");
+        System.out.println("Deal One Hand = 2");
+        System.out.println("Deal 100,000 Hands = 3");
+        System.out.println("Quit = 4");
+        return "Deck of " + getMaximum()+" Cards" + "\ncards: Low = "+ getMinimum()+ " \nHigh = " + getMaximum()+"\nTop = Card " + deck[0];
+    }
+
+}

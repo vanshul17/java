@@ -1,2 +1,2 @@
-# java
-It is all About my java projects
+# java-projects
+Java-based projects focusing on object-oriented programming, data structures, and application logic.
